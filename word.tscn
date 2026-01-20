@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbr3y8w3tatkv"]
+
+[ext_resource type="PackedScene" uid="uid://dsb7ib6msodah" path="res://scenes/Stage/stage.tscn" id="1_3q3ku"]
+[ext_resource type="Script" uid="uid://dc646cibnu2y4" path="res://word.gd" id="1_5kvxf"]
+[ext_resource type="PackedScene" uid="uid://bbldpppjn8uef" path="res://scenes/Characters/player.tscn" id="2_vl1uy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kvxf"]
+size = Vector2(6, 72)
+
+[node name="Word" type="Node2D"]
+script = ExtResource("1_5kvxf")
+
+[node name="Stage" parent="." instance=ExtResource("1_3q3ku")]
+
+[node name="Player" parent="." instance=ExtResource("2_vl1uy")]
+position = Vector2(29, 40)
+collision_layer = 1
+collision_mask = 1
+speed = 40
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(50, 32)
+
+[node name="Walls" type="Node2D" parent="Camera"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Camera/Walls"]
+position = Vector2(-47, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/Walls/StaticBody2D"]
+shape = SubResource("RectangleShape2D_5kvxf")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Camera/Walls"]
+position = Vector2(53, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/Walls/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_5kvxf")
