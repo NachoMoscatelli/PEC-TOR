@@ -2,13 +2,17 @@ extends CharacterBody2D
 
 @export var health : int
 @export var speed : int
-@export var Damage : int
+@export var damage : int
 
-@onready var animation_player = $AnimationPlayer
-@onready var character_sprite = $CharacterSprite
+@onready var animation_player := $AnimationPlayer
+@onready var character_sprite := $CharacterSprite
+@onready var hit_box := $HitBox
 
 enum State {IDLE, WALK, ATTACK}
 var state = State.IDLE
+
+func _ready() -> void:
+	hit_box.area_entered.connect(on_hit_box_area_entered)
 
 func _process(_delta: float) -> void:
 	handle_input()
@@ -42,8 +46,11 @@ func handle_animations() -> void:
 	
 	if velocity.x > 0:
 		character_sprite.flip_h = false
+		hit_box.scale.x = 1
 	elif velocity.x < 0:
 		character_sprite.flip_h = true
+		hit_box.scale.x = -1
+		
 	
 func can_attack() -> bool:
 	return state == State.IDLE or state == State.WALK 
@@ -53,3 +60,7 @@ func can_move() -> bool:
 
 func on_action_completed() -> void:
 	state = State.IDLE
+
+func on_hit_box_area_entered(hurt_box : HurtBox) -> void:
+	hurt_box.hit.emit(damage)
+	print(hurt_box)

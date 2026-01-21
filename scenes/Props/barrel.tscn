@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://2qvro8po5ehp"]
+[gd_scene load_steps=6 format=3 uid="uid://2qvro8po5ehp"]
 
+[ext_resource type="Script" uid="uid://cmbdehnt14fbf" path="res://scenes/Props/barrel.gd" id="1_6oj3w"]
 [ext_resource type="Texture2D" uid="uid://btxkvf4cubp0o" path="res://assets/art/props/barrel.png" id="1_37ymy"]
+[ext_resource type="PackedScene" uid="uid://cvolacppbp0h4" path="res://scenes/Colliders/hurt_box.tscn" id="2_gprry"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gprry"]
 radius = 8.0
 height = 16.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6oj3w"]
+size = Vector2(12, 14)
+
 [node name="Barrel" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_6oj3w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-16, -32)
@@ -18,3 +26,12 @@ hframes = 2
 position = Vector2(0, -3)
 scale = Vector2(0.923561, -0.423783)
 shape = SubResource("CapsuleShape2D_gprry")
+
+[node name="HurtBox" parent="." instance=ExtResource("2_gprry")]
+collision_layer = 64
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_6oj3w")
+
+[editable path="HurtBox"]
