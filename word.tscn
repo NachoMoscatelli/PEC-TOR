@@ -35,7 +35,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Actores" instance=ExtResource("2_vl1uy")]
 position = Vector2(29, 40)
-speed = 40
+speed = 0
 
 [node name="Barrel" parent="Actores" instance=ExtResource("4_1amgx")]
 position = Vector2(77, 45)
