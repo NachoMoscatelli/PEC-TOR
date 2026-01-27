@@ -1,0 +1,152 @@
+[gd_scene load_steps=13 format=3 uid="uid://bue64n6ejwmtc"]
+
+[ext_resource type="PackedScene" uid="uid://lsijrvmx3pif" path="res://scenes/Characters/character.tscn" id="1_ivafu"]
+[ext_resource type="Texture2D" uid="uid://cayvchblricq2" path="res://assets/art/characters/enemy_punk.png" id="2_avbxs"]
+[ext_resource type="Script" uid="uid://cb1qevy5v1kim" path="res://scenes/Characters/basic_enemy.gd" id="2_erl5m"]
+[ext_resource type="PackedScene" uid="uid://cvolacppbp0h4" path="res://scenes/Colliders/hurt_box.tscn" id="2_gfb1d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ivafu"]
+size = Vector2(16, 2)
+
+[sub_resource type="Animation" id="Animation_gfb1d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_avbxs"]
+resource_name = "idle"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_erl5m"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_76uiv"]
+resource_name = "hurt"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [40, 41, 42]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_action_completed"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_76uiv"]
+_data = {
+&"RESET": SubResource("Animation_gfb1d"),
+&"hurt": SubResource("Animation_76uiv"),
+&"idle": SubResource("Animation_avbxs"),
+&"walk": SubResource("Animation_erl5m")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_erl5m"]
+size = Vector2(9, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfb1d"]
+size = Vector2(12, 27)
+
+[node name="BasicEnemy" instance=ExtResource("1_ivafu")]
+script = ExtResource("2_erl5m")
+max_health = 30
+damage = 2
+speed = 25
+knokback_intensity = 40.0
+
+[node name="SadowSprite" parent="." index="0"]
+position = Vector2(-3.57628e-07, 0)
+scale = Vector2(1.14286, 1)
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ivafu")
+
+[node name="HurtBox2" parent="." index="2" instance=ExtResource("2_gfb1d")]
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_76uiv")
+}
+autoplay = "idle"
+
+[node name="CharacterSprite" parent="Visual" index="0"]
+position = Vector2(-24, -48)
+texture = ExtResource("2_avbxs")
+centered = false
+hframes = 10
+vframes = 10
+
+[node name="Punch" parent="Visual/HitBoxes" index="0"]
+visible = true
+
+[node name="CollisionShape2D" parent="Visual/HitBoxes/Punch" index="0"]
+position = Vector2(8.5, -12)
+shape = SubResource("RectangleShape2D_erl5m")
+
+[node name="HurtBox" parent="." index="5"]
+collision_layer = 32
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, -13.5)
+shape = SubResource("RectangleShape2D_gfb1d")
+
+[editable path="Visual/HitBoxes/Punch"]
+[editable path="HurtBox"]

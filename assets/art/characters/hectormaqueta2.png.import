@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blcjhtr2ihk6u"
-path="res://.godot/imported/hector.png-92845578c810d87aa319c859c9f82e5e.ctex"
+uid="uid://b663f1lr2228g"
+path="res://.godot/imported/hectormaqueta2.png-a3d4f4a96ebed3e1dbcfbecec691d6ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/characters/hector.png"
-dest_files=["res://.godot/imported/hector.png-92845578c810d87aa319c859c9f82e5e.ctex"]
+source_file="res://assets/art/characters/hectormaqueta2.png"
+dest_files=["res://.godot/imported/hectormaqueta2.png-a3d4f4a96ebed3e1dbcfbecec691d6ee.ctex"]
 
 [params]
 

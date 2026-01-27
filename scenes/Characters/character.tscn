@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://lsijrvmx3pif"]
+[gd_scene load_steps=5 format=3 uid="uid://lsijrvmx3pif"]
 
 [ext_resource type="Script" uid="uid://cxa34qp5tfbvd" path="res://scenes/Characters/character.gd" id="1_ticvp"]
 [ext_resource type="Texture2D" uid="uid://cevte1su5r6a0" path="res://assets/art/characters/shadow.png" id="2_3mn46"]
 [ext_resource type="PackedScene" uid="uid://b1p6j7rjgak31" path="res://scenes/Colliders/hit_box.tscn" id="3_1yu0b"]
+[ext_resource type="PackedScene" uid="uid://cvolacppbp0h4" path="res://scenes/Colliders/hurt_box.tscn" id="4_0pm5v"]
 
 [node name="Character" type="CharacterBody2D"]
 collision_layer = 0
@@ -14,12 +15,19 @@ texture = ExtResource("2_3mn46")
 centered = false
 offset = Vector2(-7, 0)
 
-[node name="CharacterSprite" type="Sprite2D" parent="."]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[node name="HitBox" parent="." instance=ExtResource("3_1yu0b")]
+[node name="Visual" type="Node2D" parent="."]
 
-[editable path="HitBox"]
+[node name="CharacterSprite" type="Sprite2D" parent="Visual"]
+
+[node name="HitBoxes" type="Node2D" parent="Visual"]
+
+[node name="Punch" parent="Visual/HitBoxes" instance=ExtResource("3_1yu0b")]
+
+[node name="HurtBox" parent="." instance=ExtResource("4_0pm5v")]
+
+[editable path="Visual/HitBoxes/Punch"]
+[editable path="HurtBox"]

@@ -1,24 +1,31 @@
+class_name  Character
 extends CharacterBody2D
 
 const GRAVITY := 600.0
 
-@export var health : int
-@export var damage : int
-@export var jump_intensity : float
-@export var speed : int
+@export var max_health : int
+@export var current_health : int
+@export var damage : int = 10
+@export var jump_intensity : float = 100.0
+@export var speed : int = 50
+@export var knokback_intensity : float = 1
+
 
 @onready var animation_player := $AnimationPlayer
-@onready var character_sprite := $CharacterSprite
-@onready var hit_box := $HitBox
+@onready var character_sprite := $Visual
+@onready var hit_boxes := $Visual/HitBoxes
+@onready var hurt_box : HurtBox = $HurtBox
 
-enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, LAND}
+enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, JUMP_KICK, LAND, HURT}
 var animation_map := {
 	State.IDLE: "idle",
 	State.WALK:"walk",
 	State.TAKEOFF:"takeoff",
 	State.JUMP:"jump",
+	State.JUMP_KICK:"jump_kick",
 	State.LAND:"landing",
 	State.ATTACK:"attack",
+	State.HURT:"hurt",
 }
 
 var state = State.IDLE
@@ -26,7 +33,10 @@ var height := 0.0
 var height_speed := 0.0
 
 func _ready() -> void:
-	hit_box.area_entered.connect(on_hit_box_area_entered)
+	current_health = max_health
+	hurt_box.hit.connect(on_hit.bind())
+	for hit_box in hit_boxes.get_children():
+		hit_box.area_entered.connect(on_hit_box_area_entered.bind())
 
 func _process(delta: float) -> void:
 	handle_input()
@@ -36,6 +46,13 @@ func _process(delta: float) -> void:
 	character_sprite.position = Vector2.UP * height
 	move_and_slide()
 
+func enable_hitbox(hitbox_name: String):
+	hit_boxes.get_node(hitbox_name).monitoring = true
+
+func disable_hitbox(hitbox_name: String):
+	hit_boxes.get_node(hitbox_name).monitoring = false
+
+
 func handle_movement() -> void:
 	if can_move():
 		if velocity.length() == 0:
@@ -44,26 +61,21 @@ func handle_movement() -> void:
 			state = State.WALK
 
 func handle_input() -> void:
-	var direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
-	velocity = direction * speed
-	if can_attack() and Input.is_action_just_pressed("Attack"):
-		state = State.ATTACK
-	if can_jump() and Input.is_action_just_pressed("Jump"):
-		state = State.TAKEOFF
+	pass
+	
+
 
 func handle_animations() -> void:
 	if animation_player.has_animation(animation_map[state]):
 		animation_player.play(animation_map[state])
 	
 	if velocity.x > 0:
-		character_sprite.flip_h = false
-		hit_box.scale.x = 1
+		character_sprite.scale.x = 1
 	elif velocity.x < 0:
-		character_sprite.flip_h = true
-		hit_box.scale.x = -1
+		character_sprite.scale.x = -1
 		
 func handle_air_time(delta : float) -> void:
-	if state == State.JUMP:
+	if state == State.JUMP or state == State.JUMP_KICK:
 		height += height_speed * delta
 		if height < 0:
 			height = 0
@@ -73,7 +85,7 @@ func handle_air_time(delta : float) -> void:
 
 
 func can_attack() -> bool:
-	return state == State.IDLE or state == State.WALK 
+	return state == State.IDLE or state == State.WALK or state == State.JUMP
 
 func can_jump() -> bool:
 	return state == State.IDLE or state == State.WALK
@@ -83,10 +95,21 @@ func can_move() -> bool:
 
 func on_action_completed() -> void:
 	state = State.IDLE
+	
 
-func on_hit_box_area_entered(hurt_box : HurtBox) -> void:
-	hurt_box.hit.emit(damage)
+func on_hit_box_area_entered(collisioned_hurt_box : HurtBox) -> void:
+	var direccion := Vector2.LEFT if collisioned_hurt_box.global_position.x < global_position.x else Vector2.RIGHT
+	collisioned_hurt_box.hit.emit(damage, direccion)
 	print(hurt_box)
+
+func on_hit(damage_recived: int, direction : Vector2) -> void:
+	current_health -= damage_recived
+	if current_health <= 0:
+		queue_free()
+	else:
+		state = State.HURT
+		velocity = direction * knokback_intensity
+	print("Damage:",damage_recived,": ",current_health,"/",max_health)
 
 func on_takeoff_completed() -> void:
 	state = State.JUMP
