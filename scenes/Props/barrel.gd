@@ -6,6 +6,6 @@ extends StaticBody2D
 func _ready() -> void:
 	hurt_box.hit.connect(on_hit.bind())
 
-func on_hit(damage: int, _direction : Vector2) -> void:
+func on_hit(damage: int, _direction : Vector2, _hit_type : HurtBox.HitType) -> void:
 	print(damage)
 	queue_free()

@@ -21,13 +21,13 @@ position = Vector2(50, 32)
 [node name="Walls" type="Node2D" parent="Camera"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Camera/Walls"]
-position = Vector2(-47, 16)
+position = Vector2(-47, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/Walls/StaticBody2D"]
 shape = SubResource("RectangleShape2D_5kvxf")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Camera/Walls"]
-position = Vector2(53, 16)
+position = Vector2(53, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/Walls/StaticBody2D2"]
 shape = SubResource("RectangleShape2D_5kvxf")
@@ -40,15 +40,27 @@ visible = false
 position = Vector2(30, 57)
 
 [node name="Player" parent="Actores" instance=ExtResource("2_vl1uy")]
-position = Vector2(29, 40)
+position = Vector2(40, 43)
 
 [node name="Barrel" parent="Actores" instance=ExtResource("4_1amgx")]
 position = Vector2(77, 45)
 
 [node name="BasicEnemy" parent="Actores" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
-position = Vector2(146, 53)
+position = Vector2(95, 39)
 player = NodePath("../Hector")
 
 [node name="BasicEnemy2" parent="Actores" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
-position = Vector2(292, 106)
+position = Vector2(76, 60)
+player = NodePath("../Hector")
+
+[node name="BasicEnemy3" parent="Actores" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
+position = Vector2(153, 50)
+player = NodePath("../Hector")
+
+[node name="BasicEnemy4" parent="Actores" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
+position = Vector2(173, 58)
+player = NodePath("../Hector")
+
+[node name="BasicEnemy5" parent="Actores" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
+position = Vector2(39, 59)
 player = NodePath("../Hector")

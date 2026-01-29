@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bue64n6ejwmtc"]
+[gd_scene load_steps=16 format=3 uid="uid://bue64n6ejwmtc"]
 
 [ext_resource type="PackedScene" uid="uid://lsijrvmx3pif" path="res://scenes/Characters/character.tscn" id="1_ivafu"]
 [ext_resource type="Texture2D" uid="uid://cayvchblricq2" path="res://assets/art/characters/enemy_punk.png" id="2_avbxs"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cvolacppbp0h4" path="res://scenes/Colliders/hurt_box.tscn" id="2_gfb1d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivafu"]
-size = Vector2(16, 2)
+size = Vector2(16, 3)
 
 [sub_resource type="Animation" id="Animation_gfb1d"]
 length = 0.001
@@ -21,6 +21,37 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_76uiv"]
+resource_name = "hurt"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [40, 41, 42]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_action_completed"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_avbxs"]
@@ -59,9 +90,10 @@ tracks/0/keys = {
 "values": [10, 11, 12, 13, 14, 15, 16, 17]
 }
 
-[sub_resource type="Animation" id="Animation_76uiv"]
-resource_name = "hurt"
-length = 0.3
+[sub_resource type="Animation" id="Animation_0lnlb"]
+resource_name = "fall"
+length = 0.1
+loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -70,10 +102,45 @@ tracks/0/path = NodePath("Visual/CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [40, 41, 42]
+"values": [51]
+}
+
+[sub_resource type="Animation" id="Animation_cdn66"]
+resource_name = "grounded"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [52]
+}
+
+[sub_resource type="Animation" id="Animation_guj7x"]
+resource_name = "land"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [70]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -82,19 +149,22 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.9),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"on_action_completed"
+"method": &"on_land_completed"
 }]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_76uiv"]
 _data = {
 &"RESET": SubResource("Animation_gfb1d"),
+&"fall": SubResource("Animation_0lnlb"),
+&"grounded": SubResource("Animation_cdn66"),
 &"hurt": SubResource("Animation_76uiv"),
 &"idle": SubResource("Animation_avbxs"),
+&"land": SubResource("Animation_guj7x"),
 &"walk": SubResource("Animation_erl5m")
 }
 
@@ -105,18 +175,22 @@ size = Vector2(9, 4)
 size = Vector2(12, 27)
 
 [node name="BasicEnemy" instance=ExtResource("1_ivafu")]
+collision_layer = 4
+collision_mask = 12
 script = ExtResource("2_erl5m")
 max_health = 30
 damage = 2
 speed = 25
 knokback_intensity = 40.0
+knokdown_intensity = 70.0
+duration_grounded_ms = 1000
 
 [node name="SadowSprite" parent="." index="0"]
 position = Vector2(-3.57628e-07, 0)
 scale = Vector2(1.14286, 1)
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, 1)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_ivafu")
 
 [node name="HurtBox2" parent="." index="2" instance=ExtResource("2_gfb1d")]

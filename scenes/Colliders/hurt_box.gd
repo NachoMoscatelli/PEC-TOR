@@ -1,4 +1,6 @@
 class_name HurtBox
 extends Area2D
 
-signal hit(damage : int, direction : Vector2)
+enum HitType {NORMAL, KNOCKDOWN, POWERHIT}
+
+signal hit(damage : int, direction : Vector2, type : HitType)

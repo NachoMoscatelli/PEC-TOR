@@ -11,11 +11,13 @@ func handle_input() -> void:
 		
 		if player_slot != null:
 			var direction := (player_slot.global_position - global_position).normalized()
-			if (player_slot.global_position - global_position).length() < 1:
+			if abs((player_slot.global_position - global_position).length()) < 1:
 				velocity = Vector2.ZERO
 			else:
 				velocity = direction * speed
 
 
-#func on_hit(damage_recived: int, direction : Vector2) -> void:
-	#super.on_hit(damage_recived,)
+func on_hit(damage_recived: int, direction : Vector2, hit_type : HurtBox.HitType ) -> void:
+	super.on_hit(damage_recived,direction, hit_type)
+	if current_health <= 0:
+		player.free_slot(self)

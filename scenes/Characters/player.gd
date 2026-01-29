@@ -40,4 +40,4 @@ func free_slot(enemy: BasicEnemy) -> void:
 	)
 	
 	if vacant_slot.size() == 1:
-		vacant_slot[0].free_up()
+		vacant_slot[0].free_slot()
