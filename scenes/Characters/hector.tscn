@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://jfvb7fj8qg3w"]
+[gd_scene load_steps=16 format=3 uid="uid://jfvb7fj8qg3w"]
 
 [ext_resource type="PackedScene" uid="uid://lsijrvmx3pif" path="res://scenes/Characters/character.tscn" id="1_j1bab"]
 [ext_resource type="Script" uid="uid://dnbkv45ha2vyp" path="res://scenes/Characters/player.gd" id="2_i04uw"]
-[ext_resource type="Texture2D" uid="uid://b663f1lr2228g" path="res://assets/tuto/art/characters/hectormaqueta2.png" id="2_j1bab"]
+[ext_resource type="Texture2D" uid="uid://vfafgyy30irr" path="res://assets/pector/hectormaqueta2.png" id="3_16hvs"]
+[ext_resource type="PackedScene" uid="uid://b1p6j7rjgak31" path="res://scenes/Colliders/hit_box.tscn" id="4_16hvs"]
 [ext_resource type="PackedScene" uid="uid://d0gqttf3he3mh" path="res://scenes/Characters/enemy_slot.tscn" id="4_67d5r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1bab"]
@@ -21,35 +22,101 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
-
-[sub_resource type="Animation" id="Animation_j1bab"]
-resource_name = "attack"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/CharacterSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [81]
-}
-tracks/1/type = "method"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("Visual/HitBoxes/Kick:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"on_action_completed"
-}]
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/HitBoxes/Kick:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visual/HitBoxes/Punch:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visual/HitBoxes/Punch:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visual/HitBoxes/Punch Heavy:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visual/HitBoxes/Punch Heavy:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visual/HitBoxes/KickHeavy:monitoring")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visual/HitBoxes/KickHeavy:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_i04uw"]
@@ -88,15 +155,239 @@ tracks/0/keys = {
 "values": [63, 64, 65, 66, 67, 68, 69, 70, 71, 72]
 }
 
+[sub_resource type="Animation" id="Animation_j1bab"]
+resource_name = "punch_basic"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [76, 77, 78]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_action_completed"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/HitBoxes/Punch:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visual/HitBoxes/Punch:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_vmtc2"]
+resource_name = "kick_basic"
+length = 0.15
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [85, 86, 87]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_action_completed"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/HitBoxes/Kick:monitoring")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visual/HitBoxes/Kick:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_jrlwq"]
+resource_name = "punch_heavy"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [73, 74, 75]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/HitBoxes/Punch Heavy:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.35361183),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/HitBoxes/Punch Heavy:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.35361183),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_action_completed"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_di7il"]
+resource_name = "kick_heavy"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [88, 89, 90]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/HitBoxes/KickHeavy:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.34997174),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/HitBoxes/KickHeavy:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.049999997, 0.34997174),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"on_action_completed"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vmtc2"]
 _data = {
 &"RESET": SubResource("Animation_67d5r"),
-&"attack": SubResource("Animation_j1bab"),
 &"idle": SubResource("Animation_i04uw"),
+&"kick_basic": SubResource("Animation_vmtc2"),
+&"kick_heavy": SubResource("Animation_di7il"),
+&"punch_basic": SubResource("Animation_j1bab"),
+&"punch_heavy": SubResource("Animation_jrlwq"),
 &"walk": SubResource("Animation_16hvs")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_67d5r"]
+size = Vector2(21, 45.386715)
 
 [node name="Hector" instance=ExtResource("1_j1bab")]
 collision_layer = 2
@@ -121,27 +412,61 @@ autoplay = "idle"
 
 [node name="CharacterSprite" parent="Visual" index="0"]
 position = Vector2(-31, -64)
-texture = ExtResource("2_j1bab")
+texture = ExtResource("3_16hvs")
 centered = false
 hframes = 25
-vframes = 6
+vframes = 7
+
+[node name="Punch" parent="Visual/HitBoxes" index="0"]
+z_index = 200
+collision_mask = 96
 
 [node name="CollisionShape2D" parent="Visual/HitBoxes/Punch" index="0"]
+position = Vector2(15, -26)
+shape = SubResource("RectangleShape2D_67d5r")
+
+[node name="Punch Heavy" parent="Visual/HitBoxes" index="1" instance=ExtResource("4_16hvs")]
+z_index = 200
+collision_mask = 96
+
+[node name="CollisionShape2D" parent="Visual/HitBoxes/Punch Heavy" index="0"]
+position = Vector2(18, -45.59707)
+scale = Vector2(1, 0.94313645)
+shape = SubResource("RectangleShape2D_67d5r")
+
+[node name="Kick" parent="Visual/HitBoxes" index="2" instance=ExtResource("4_16hvs")]
+z_index = 200
+collision_mask = 96
+
+[node name="CollisionShape2D" parent="Visual/HitBoxes/Kick" index="0"]
+position = Vector2(19, -16)
+shape = SubResource("RectangleShape2D_67d5r")
+
+[node name="KickHeavy" parent="Visual/HitBoxes" index="3" instance=ExtResource("4_16hvs")]
+z_index = 200
+position = Vector2(4, -19)
+collision_mask = 96
+
+[node name="CollisionShape2D" parent="Visual/HitBoxes/KickHeavy" index="0"]
+position = Vector2(19, -16)
 shape = SubResource("RectangleShape2D_67d5r")
 
 [node name="EnemySlot" type="Node2D" parent="." index="5"]
 
 [node name="EnemySlot" parent="EnemySlot" index="0" instance=ExtResource("4_67d5r")]
-position = Vector2(17, 5)
+position = Vector2(38, 5)
 
 [node name="EnemySlot2" parent="EnemySlot" index="1" instance=ExtResource("4_67d5r")]
-position = Vector2(16, -4)
+position = Vector2(30, -9)
 
 [node name="EnemySlot3" parent="EnemySlot" index="2" instance=ExtResource("4_67d5r")]
-position = Vector2(-16, -4)
+position = Vector2(-30, -9)
 
 [node name="EnemySlot4" parent="EnemySlot" index="3" instance=ExtResource("4_67d5r")]
-position = Vector2(-17, 5)
+position = Vector2(-38, 5)
 
 [editable path="Visual/HitBoxes/Punch"]
+[editable path="Visual/HitBoxes/Punch Heavy"]
+[editable path="Visual/HitBoxes/Kick"]
+[editable path="Visual/HitBoxes/KickHeavy"]
 [editable path="HurtBox"]

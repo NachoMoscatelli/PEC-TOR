@@ -4,15 +4,25 @@ extends Character
 @onready var enemy_slots : Array = $EnemySlot.get_children()
 
 func handle_input() -> void:
-	var direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
-	velocity = direction * speed
-	if can_attack() and Input.is_action_just_pressed("Attack"):
-		if state == State.JUMP:
-			state = State.JUMP_KICK
-		else:
-			state = State.ATTACK
+	if can_move():
+		var direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+		velocity = direction * speed
+	
 	if can_jump() and Input.is_action_just_pressed("Jump"):
-		state = State.TAKEOFF
+		state = State.IDLE
+		
+	if can_attack():
+		if Input.is_action_just_pressed("Punch"):
+			state = State.PUNCH
+			punch_combo_index = (punch_combo_index + 1) % 3
+			kick_combo_index = 0
+			velocity = Vector2.ZERO
+		if Input.is_action_just_pressed("Kick"):
+			state = State.KICK
+			kick_combo_index = (kick_combo_index + 1) % 3
+			punch_combo_index = 0
+			velocity = Vector2.ZERO
+			
 
 func reserve_slot(enemy : BasicEnemy) -> EnemySlot:
 	var available_slots = enemy_slots.filter(

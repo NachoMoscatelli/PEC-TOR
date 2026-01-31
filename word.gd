@@ -14,7 +14,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	camera.position.x = player.position.x
-	camera.position.y = player.position.y - 20
+	camera.position.y = player.position.y - 40
 	
 	
 	#if player.position.x > camera.position.x:

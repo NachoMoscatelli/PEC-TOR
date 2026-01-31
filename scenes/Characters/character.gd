@@ -18,7 +18,8 @@ const GRAVITY := 600.0
 @onready var hit_boxes := $Visual/HitBoxes
 @onready var hurt_box : HurtBox = $HurtBox
 
-enum State {IDLE, WALK, ATTACK, TAKEOFF, JUMP, JUMP_KICK, LAND, HURT, FALL, GROUNDED}
+
+enum State {IDLE, WALK, PUNCH, KICK, TAKEOFF, JUMP, JUMP_KICK, LAND, HURT, FALL, GROUNDED}
 var animation_map := {
 	State.IDLE: "idle",
 	State.WALK:"walk",
@@ -26,11 +27,17 @@ var animation_map := {
 	State.JUMP:"jump",
 	State.JUMP_KICK:"jump_kick",
 	State.LAND:"land",
-	State.ATTACK:"attack",
 	State.HURT:"hurt",
 	State.FALL:"fall",
 	State.GROUNDED:"grounded",
 }
+
+var punch_combo = ["punch_heavy","punch_basic","punch_basic"]
+var punch_combo_index : int = 0
+var kick_combo = ["kick_heavy","kick_basic","kick_basic"]
+var kick_combo_index : int = 0
+
+
 
 var state = State.IDLE
 var height := 0.0
@@ -71,7 +78,11 @@ func handle_input() -> void:
 	
 
 func handle_animations() -> void:
-	if animation_player.has_animation(animation_map[state]):
+	if state == State.PUNCH:
+		animation_player.play(punch_combo[punch_combo_index])
+	elif state == State.KICK:
+		animation_player.play(kick_combo[kick_combo_index])
+	elif animation_player.has_animation(animation_map[state]):
 		animation_player.play(animation_map[state])
 	
 	if velocity.x > 0:
