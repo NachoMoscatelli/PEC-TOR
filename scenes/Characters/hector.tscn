@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://jfvb7fj8qg3w"]
+[gd_scene load_steps=12 format=3 uid="uid://jfvb7fj8qg3w"]
 
 [ext_resource type="PackedScene" uid="uid://lsijrvmx3pif" path="res://scenes/Characters/character.tscn" id="1_j1bab"]
 [ext_resource type="Script" uid="uid://dnbkv45ha2vyp" path="res://scenes/Characters/player.gd" id="2_i04uw"]
@@ -35,7 +35,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [77]
+"values": [81]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -96,6 +96,8 @@ _data = {
 &"walk": SubResource("Animation_16hvs")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67d5r"]
+
 [node name="Hector" instance=ExtResource("1_j1bab")]
 collision_layer = 2
 collision_mask = 9
@@ -123,6 +125,9 @@ texture = ExtResource("2_j1bab")
 centered = false
 hframes = 25
 vframes = 6
+
+[node name="CollisionShape2D" parent="Visual/HitBoxes/Punch" index="0"]
+shape = SubResource("RectangleShape2D_67d5r")
 
 [node name="EnemySlot" type="Node2D" parent="." index="5"]
 

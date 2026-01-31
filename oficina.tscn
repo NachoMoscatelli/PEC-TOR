@@ -914,7 +914,7 @@ texture_region_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_wg0iv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajbn3"]
-size = Vector2(2301.175, 20)
+size = Vector2(2301.175, 22.28946)
 
 [node name="oficina" type="Node2D"]
 
@@ -931,20 +931,68 @@ tile_set = SubResource("TileSet_ok8r0")
 
 [node name="Walls" type="Node2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Walls"]
+[node name="Top" type="StaticBody2D" parent="Walls"]
 z_index = 1000
 position = Vector2(1408, 524)
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Top"]
+position = Vector2(527.9282, 2.980713)
+scale = Vector2(1.6340103, 2.603857)
+shape = SubResource("RectangleShape2D_ajbn3")
+
+[node name="Down" type="StaticBody2D" parent="Walls"]
+z_index = 1000
+position = Vector2(1407, 707)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Down"]
 position = Vector2(527.9282, 0)
 scale = Vector2(1.6340103, 2.603857)
 shape = SubResource("RectangleShape2D_ajbn3")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Walls"]
-z_index = 1000
-position = Vector2(1407, 707)
+[node name="Verticals" type="Node2D" parent="Walls"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/StaticBody2D2"]
-position = Vector2(527.9282, 0)
-scale = Vector2(1.6340103, 2.603857)
+[node name="Wall1" type="StaticBody2D" parent="Walls/Verticals"]
+z_index = 1000
+position = Vector2(1411, 569)
+scale = Vector2(1, 0.8074161)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Verticals/Wall1"]
+position = Vector2(-1360, 18)
+scale = Vector2(0.01155514, 17.127907)
+shape = SubResource("RectangleShape2D_ajbn3")
+
+[node name="Wall2" type="StaticBody2D" parent="Walls/Verticals"]
+z_index = 1000
+position = Vector2(3605, 568.00006)
+scale = Vector2(1, 0.8074161)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Verticals/Wall2"]
+position = Vector2(-1360, 18)
+scale = Vector2(0.01155514, 17.127907)
+shape = SubResource("RectangleShape2D_ajbn3")
+
+[node name="Wall3" type="StaticBody2D" parent="Walls/Verticals"]
+z_index = 1000
+position = Vector2(3714, 566)
+scale = Vector2(1, 0.8074161)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Verticals/Wall3"]
+position = Vector2(-1360, 18)
+scale = Vector2(0.01155514, 17.127907)
+shape = SubResource("RectangleShape2D_ajbn3")
+
+[node name="Wall4" type="StaticBody2D" parent="Walls/Verticals"]
+z_index = 1000
+position = Vector2(5189, 571)
+scale = Vector2(1, 0.8074161)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Verticals/Wall4"]
+position = Vector2(-1360, 18)
+scale = Vector2(0.01155514, 17.127907)
 shape = SubResource("RectangleShape2D_ajbn3")

@@ -70,7 +70,6 @@ func handle_input() -> void:
 	pass
 	
 
-
 func handle_animations() -> void:
 	if animation_player.has_animation(animation_map[state]):
 		animation_player.play(animation_map[state])
