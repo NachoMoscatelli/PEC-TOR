@@ -1,0 +1,274 @@
+[gd_scene format=3 uid="uid://dro73fyjbcdgw"]
+
+[ext_resource type="Script" uid="uid://j7ahlj7xhf2" path="res://scenes/intro/intro.gd" id="1_dpxxx"]
+[ext_resource type="Texture2D" uid="uid://dqnbstpyd0e3c" path="res://assets/pector/cutscene1.png" id="1_y6ycx"]
+[ext_resource type="Texture2D" uid="uid://dbpnjlfexmbce" path="res://assets/pector/cutscene2.png" id="2_dpxxx"]
+[ext_resource type="Texture2D" uid="uid://cvm6axtb8ylir" path="res://assets/pector/cutscene3.png" id="3_dk2oa"]
+[ext_resource type="Texture2D" uid="uid://dfoj8ddpyo0ee" path="res://assets/pector/cutscene4.png" id="4_7ufi4"]
+[ext_resource type="Texture2D" uid="uid://c1nstfwnhdlmp" path="res://assets/pector/cutscene5.png" id="5_h0kys"]
+[ext_resource type="Texture2D" uid="uid://6l3u217ai10v" path="res://assets/pector/cutscene6.png" id="6_d0rr7"]
+[ext_resource type="Texture2D" uid="uid://bs33ndyhh426w" path="res://assets/pector/cutscene7.png" id="7_wby50"]
+
+[sub_resource type="Animation" id="Animation_y6ycx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cutscene1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cutscene2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cutscene3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cutscene4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cutscene5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Cutscene6:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Cutscene7:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera2D:zoom")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dpxxx"]
+resource_name = "intro"
+length = 21.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cutscene1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 3.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cutscene2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 3.1, 6.1, 6.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cutscene3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3, 3.1, 6.2, 9.2, 9.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cutscene4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3, 3.1, 9.3, 12.3, 12.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, true, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Cutscene5:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3, 3.1, 12.4, 15.4, 15.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, true, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Cutscene6:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3, 3.1, 15.5, 18.5, 18.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, true, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Cutscene7:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 3, 3.1, 18.6, 21.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, false, true, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = false
+tracks/7/path = NodePath("Camera2D:zoom")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(21.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"terminar_cutscene"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dk2oa"]
+_data = {
+&"RESET": SubResource("Animation_y6ycx"),
+&"intro": SubResource("Animation_dpxxx")
+}
+
+[node name="intro" type="Node2D" unique_id=2126255331]
+script = ExtResource("1_dpxxx")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=405794299]
+position = Vector2(-4, 0)
+
+[node name="Cutscene1" type="Sprite2D" parent="." unique_id=1903342537]
+position = Vector2(-4, 0)
+texture = ExtResource("1_y6ycx")
+
+[node name="Cutscene2" type="Sprite2D" parent="." unique_id=377159868]
+visible = false
+position = Vector2(-4, 0)
+texture = ExtResource("2_dpxxx")
+
+[node name="Cutscene3" type="Sprite2D" parent="." unique_id=1952601943]
+visible = false
+position = Vector2(-4, 0)
+texture = ExtResource("3_dk2oa")
+
+[node name="Cutscene4" type="Sprite2D" parent="." unique_id=664602027]
+visible = false
+position = Vector2(-4, 0)
+texture = ExtResource("4_7ufi4")
+
+[node name="Cutscene5" type="Sprite2D" parent="." unique_id=451904592]
+visible = false
+position = Vector2(-4, 0)
+texture = ExtResource("5_h0kys")
+
+[node name="Cutscene6" type="Sprite2D" parent="." unique_id=1359072002]
+visible = false
+position = Vector2(-4, 0)
+texture = ExtResource("6_d0rr7")
+
+[node name="Cutscene7" type="Sprite2D" parent="." unique_id=1525169738]
+visible = false
+position = Vector2(-4, 0)
+texture = ExtResource("7_wby50")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1362330249]
+libraries/ = SubResource("AnimationLibrary_dk2oa")
+autoplay = &"intro"
