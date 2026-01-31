@@ -11,6 +11,7 @@ var time_since_prep_hit = Time.get_ticks_msec()
 var player_slot : EnemySlot = null
 
 func _ready() -> void:
+	super._ready()
 	punch_combo = ["punch_basic"]
 	
 

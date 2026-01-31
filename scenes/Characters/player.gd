@@ -4,6 +4,7 @@ extends Character
 @onready var enemy_slots : Array = $EnemySlot.get_children()
 
 func _ready() -> void:
+	super._ready()
 	punch_combo = ["punch_heavy","punch_basic","punch_basic"]
 	kick_combo = ["kick_heavy","kick_basic","kick_basic"]
 

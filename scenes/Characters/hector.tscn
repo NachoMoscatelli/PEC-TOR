@@ -470,7 +470,7 @@ _data = {
 size = Vector2(21, 45.386715)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16hvs"]
-size = Vector2(24, 55)
+size = Vector2(36, 55)
 
 [node name="Hector" unique_id=740788428 instance=ExtResource("1_j1bab")]
 collision_layer = 2
