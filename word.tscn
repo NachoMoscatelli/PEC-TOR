@@ -1,34 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://c60x73ycl8gjf"]
+[gd_scene format=3 uid="uid://c60x73ycl8gjf"]
 
 [ext_resource type="Script" uid="uid://dc646cibnu2y4" path="res://word.gd" id="1_5kvxf"]
 [ext_resource type="PackedScene" uid="uid://c2xe8sfy5djdj" path="res://oficina.tscn" id="1_vl1uy"]
 [ext_resource type="PackedScene" uid="uid://jfvb7fj8qg3w" path="res://scenes/Characters/hector.tscn" id="3_2isbp"]
 [ext_resource type="PackedScene" uid="uid://bue64n6ejwmtc" path="res://scenes/Characters/basic_enemy.tscn" id="6_rv581"]
 
-[node name="Word" type="Node2D"]
+[node name="Word" type="Node2D" unique_id=1440021119]
+y_sort_enabled = true
 script = ExtResource("1_5kvxf")
 
-[node name="Oficina" parent="." instance=ExtResource("1_vl1uy")]
-z_as_relative = false
-y_sort_enabled = true
-
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=2018799196]
 position = Vector2(-9, 72)
 limit_left = 64
 limit_top = 440
 limit_bottom = 680
 
-[node name="Actors" type="Node2D" parent="."]
+[node name="ysort" type="Node2D" parent="." unique_id=713419228]
+y_sort_enabled = true
+
+[node name="Oficina" parent="." unique_id=2117575078 instance=ExtResource("1_vl1uy")]
+z_as_relative = false
+
+[node name="Actors" type="Node2D" parent="." unique_id=359428772]
 z_index = 1
 
-[node name="Hector" parent="Actors" instance=ExtResource("3_2isbp")]
+[node name="Hector" parent="Actors" unique_id=944060864 instance=ExtResource("3_2isbp")]
 z_index = 5
-y_sort_enabled = true
-position = Vector2(272.00003, 599.00006)
+position = Vector2(172, 666)
 scale = Vector2(1.3, 1.3)
 
-[node name="BasicEnemy" parent="Actors" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
-position = Vector2(427, 643)
+[node name="BasicEnemy" parent="Actors" unique_id=355132418 node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
+z_index = 5
+position = Vector2(564, 625)
 scale = Vector2(1.2, 1.2)
 player = NodePath("../Hector")
 duration_between_hits = 3000
