@@ -3,6 +3,11 @@ extends Character
 
 @onready var enemy_slots : Array = $EnemySlot.get_children()
 
+func _ready() -> void:
+	punch_combo = ["punch_heavy","punch_basic","punch_basic"]
+	kick_combo = ["kick_heavy","kick_basic","kick_basic"]
+
+
 func handle_input() -> void:
 	if can_move():
 		var direction = Input.get_vector("ui_left","ui_right","ui_up","ui_down")

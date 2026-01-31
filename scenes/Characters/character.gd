@@ -17,7 +17,7 @@ const GRAVITY := 600.0
 @onready var character_sprite := $Visual
 @onready var hit_boxes := $Visual/HitBoxes
 @onready var hurt_box : HurtBox = $HurtBox
-
+@onready var collision_box : CollisionShape2D = $CollisionShape2D
 
 enum State {IDLE, WALK, PUNCH, KICK, TAKEOFF, JUMP, JUMP_KICK, LAND, HURT, FALL, GROUNDED}
 var animation_map := {
@@ -32,11 +32,10 @@ var animation_map := {
 	State.GROUNDED:"grounded",
 }
 
-var punch_combo = ["punch_heavy","punch_basic","punch_basic"]
+var punch_combo = []
 var punch_combo_index : int = 0
-var kick_combo = ["kick_heavy","kick_basic","kick_basic"]
+var kick_combo = []
 var kick_combo_index : int = 0
-
 
 
 var state = State.IDLE
@@ -58,13 +57,6 @@ func _process(delta: float) -> void:
 	handle_grounded_time()
 	character_sprite.position = Vector2.UP * height
 	move_and_slide()
-
-func enable_hitbox(hitbox_name: String):
-	hit_boxes.get_node(hitbox_name).monitoring = true
-
-func disable_hitbox(hitbox_name: String):
-	hit_boxes.get_node(hitbox_name).monitoring = false
-
 
 func handle_movement() -> void:
 	if can_move():
@@ -121,24 +113,42 @@ func can_move() -> bool:
 
 func on_action_completed() -> void:
 	state = State.IDLE
-	
+
+func get_y_position() -> float:
+	return collision_box.global_position.y
 
 func on_hit_box_area_entered(collisioned_hurt_box : HurtBox) -> void:
+	var entity_y_position : float = collisioned_hurt_box.get_parent().get_y_position()
+	var my_y : float = collision_box.global_position.y 
+	var deathband := 10
+	
+	if abs(entity_y_position - my_y) > deathband :
+		return
+	
 	var hit_type := HurtBox.HitType.NORMAL
+	var dmg_dealt = damage
 	var direccion := Vector2.LEFT if collisioned_hurt_box.global_position.x < global_position.x else Vector2.RIGHT
-	if state == State.JUMP_KICK:
-		hit_type = HurtBox.HitType.KNOCKDOWN
-	collisioned_hurt_box.hit.emit(damage, direccion, hit_type)
+	if state == State.PUNCH and punch_combo_index == 0:
+		hit_type = HurtBox.HitType.UPPERCUT
+		dmg_dealt *= 2
+	elif state == State.KICK and kick_combo_index == 0:
+		hit_type = HurtBox.HitType.HIGHKICK
+		dmg_dealt *= 1.5
+	collisioned_hurt_box.hit.emit(dmg_dealt, direccion, hit_type)
 	print(hurt_box)
 
 func on_hit(damage_recived: int, direction : Vector2, hit_type: HurtBox.HitType) -> void:
 	current_health -= damage_recived
-	if current_health <= 0 or hit_type == HurtBox.HitType.KNOCKDOWN:
+	var increased_knockback = 1
+	if current_health <= 0 or hit_type == HurtBox.HitType.UPPERCUT:
 		state = State.FALL
 		height_speed = knokdown_intensity
+	elif hit_type == HurtBox.HitType.HIGHKICK:
+		increased_knockback = 2
+		state = State.HURT
 	else:
 		state = State.HURT
-	velocity = direction * knokback_intensity
+	velocity = direction * knokback_intensity * increased_knockback
 	
 	print("Damage:",damage_recived,": ",current_health,"/",max_health)
 
