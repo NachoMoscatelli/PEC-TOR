@@ -1,38 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://c60x73ycl8gjf"]
+[gd_scene format=3 uid="uid://c60x73ycl8gjf"]
 
 [ext_resource type="Script" uid="uid://dc646cibnu2y4" path="res://word.gd" id="1_5kvxf"]
 [ext_resource type="PackedScene" uid="uid://c2xe8sfy5djdj" path="res://oficina.tscn" id="1_vl1uy"]
 [ext_resource type="PackedScene" uid="uid://jfvb7fj8qg3w" path="res://scenes/Characters/hector.tscn" id="3_2isbp"]
+[ext_resource type="Script" uid="uid://bx7ta0l66fxlt" path="res://area_2d.gd" id="5_2isbp"]
 [ext_resource type="PackedScene" uid="uid://bue64n6ejwmtc" path="res://scenes/Characters/basic_enemy.tscn" id="6_rv581"]
 
-[node name="Word" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rv581"]
+size = Vector2(60, 41)
+
+[node name="Word" type="Node2D" unique_id=1428616645]
 script = ExtResource("1_5kvxf")
 
-[node name="Oficina" parent="." instance=ExtResource("1_vl1uy")]
+[node name="Oficina" parent="." unique_id=1187164524 instance=ExtResource("1_vl1uy")]
 z_as_relative = false
 y_sort_enabled = true
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=322309511]
 position = Vector2(-9, 72)
 limit_left = 64
 limit_top = 440
 limit_bottom = 680
 
-[node name="Actors" type="Node2D" parent="."]
+[node name="Actors" type="Node2D" parent="." unique_id=986019219]
 z_index = 1
 
-[node name="Hector" parent="Actors" instance=ExtResource("3_2isbp")]
+[node name="Hector" parent="Actors" unique_id=674020137 instance=ExtResource("3_2isbp")]
 z_index = 5
 y_sort_enabled = true
 position = Vector2(272.00003, 599.00006)
 scale = Vector2(1.3, 1.3)
 
-[node name="BasicEnemy" parent="Actors" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
+[node name="BasicEnemy" parent="Actors" unique_id=696815706 node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
 position = Vector2(427, 643)
 scale = Vector2(1.2, 1.2)
 player = NodePath("../Hector")
 duration_between_hits = 3000
 duration_prep_hit = 500
 max_health = 10000
-knokback_intensity = 100.0
-knokdown_intensity = 170.0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=245119321 node_paths=PackedStringArray("punto_destino")]
+collision_mask = 2
+script = ExtResource("5_2isbp")
+punto_destino = NodePath("../Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=984276057]
+position = Vector2(365, 594)
+shape = SubResource("RectangleShape2D_rv581")
+debug_color = Color(0.52861106, 0.5711729, 0.07360173, 0.41960785)
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1606376897]
+position = Vector2(2317, 1005)
