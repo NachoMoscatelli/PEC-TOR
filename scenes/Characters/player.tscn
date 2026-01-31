@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://lsijrvmx3pif" path="res://scenes/Characters/character.tscn" id="1_xwt18"]
 [ext_resource type="Script" uid="uid://dnbkv45ha2vyp" path="res://scenes/Characters/player.gd" id="2_7xbc7"]
 [ext_resource type="PackedScene" uid="uid://b1p6j7rjgak31" path="res://scenes/Colliders/hit_box.tscn" id="2_8iw34"]
-[ext_resource type="Texture2D" uid="uid://d3d6wrcc5htyc" path="res://assets/art/characters/player.png" id="2_y7cse"]
+[ext_resource type="Texture2D" uid="uid://d3d6wrcc5htyc" path="res://assets/tuto/art/characters/player.png" id="2_y7cse"]
 [ext_resource type="PackedScene" uid="uid://d0gqttf3he3mh" path="res://scenes/Characters/enemy_slot.tscn" id="5_ipnkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ipnkg"]

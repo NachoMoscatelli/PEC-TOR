@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://2qvro8po5ehp"]
 
 [ext_resource type="Script" uid="uid://cmbdehnt14fbf" path="res://scenes/Props/barrel.gd" id="1_6oj3w"]
-[ext_resource type="Texture2D" uid="uid://btxkvf4cubp0o" path="res://assets/art/props/barrel.png" id="1_37ymy"]
+[ext_resource type="Texture2D" uid="uid://btxkvf4cubp0o" path="res://assets/tuto/art/props/barrel.png" id="1_37ymy"]
 [ext_resource type="PackedScene" uid="uid://cvolacppbp0h4" path="res://scenes/Colliders/hurt_box.tscn" id="2_gprry"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bi0km"]

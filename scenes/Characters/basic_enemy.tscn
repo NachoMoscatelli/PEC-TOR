@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://bue64n6ejwmtc"]
 
 [ext_resource type="PackedScene" uid="uid://lsijrvmx3pif" path="res://scenes/Characters/character.tscn" id="1_ivafu"]
-[ext_resource type="Texture2D" uid="uid://cayvchblricq2" path="res://assets/art/characters/enemy_punk.png" id="2_avbxs"]
+[ext_resource type="Texture2D" uid="uid://cayvchblricq2" path="res://assets/tuto/art/characters/enemy_punk.png" id="2_avbxs"]
 [ext_resource type="Script" uid="uid://cb1qevy5v1kim" path="res://scenes/Characters/basic_enemy.gd" id="2_erl5m"]
 [ext_resource type="PackedScene" uid="uid://cvolacppbp0h4" path="res://scenes/Colliders/hurt_box.tscn" id="2_gfb1d"]
 

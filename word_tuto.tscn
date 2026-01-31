@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbr3y8w3tatkv"]
+
+[ext_resource type="PackedScene" uid="uid://dsb7ib6msodah" path="res://scenes/Stage/stage.tscn" id="1_3q3ku"]
+[ext_resource type="Script" uid="uid://dc646cibnu2y4" path="res://word.gd" id="1_5kvxf"]
+[ext_resource type="PackedScene" uid="uid://bbldpppjn8uef" path="res://scenes/Characters/player.tscn" id="2_vl1uy"]
+[ext_resource type="PackedScene" uid="uid://jfvb7fj8qg3w" path="res://scenes/Characters/hector.tscn" id="3_2isbp"]
+[ext_resource type="PackedScene" uid="uid://2qvro8po5ehp" path="res://scenes/Props/barrel.tscn" id="4_1amgx"]
+[ext_resource type="PackedScene" uid="uid://bue64n6ejwmtc" path="res://scenes/Characters/basic_enemy.tscn" id="6_rv581"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kvxf"]
+size = Vector2(6, 72)
+
+[node name="Word" type="Node2D"]
+script = ExtResource("1_5kvxf")
+
+[node name="Stage" parent="." instance=ExtResource("1_3q3ku")]
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(50, 32)
+
+[node name="Walls" type="Node2D" parent="Camera"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Camera/Walls"]
+position = Vector2(-47, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/Walls/StaticBody2D"]
+shape = SubResource("RectangleShape2D_5kvxf")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Camera/Walls"]
+position = Vector2(53, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/Walls/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_5kvxf")
+
+[node name="Actores" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Hector" parent="Actores" instance=ExtResource("3_2isbp")]
+visible = false
+position = Vector2(30, 57)
+
+[node name="Player" parent="Actores" instance=ExtResource("2_vl1uy")]
+position = Vector2(40, 43)
+
+[node name="Barrel" parent="Actores" instance=ExtResource("4_1amgx")]
+position = Vector2(77, 45)
+
+[node name="BasicEnemy" parent="Actores" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
+position = Vector2(95, 39)
+player = NodePath("../Hector")
+
+[node name="BasicEnemy2" parent="Actores" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
+position = Vector2(76, 60)
+player = NodePath("../Hector")
+
+[node name="BasicEnemy3" parent="Actores" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
+position = Vector2(153, 50)
+player = NodePath("../Hector")
+
+[node name="BasicEnemy4" parent="Actores" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
+position = Vector2(173, 58)
+player = NodePath("../Hector")
+
+[node name="BasicEnemy5" parent="Actores" node_paths=PackedStringArray("player") instance=ExtResource("6_rv581")]
+position = Vector2(39, 59)
+player = NodePath("../Hector")

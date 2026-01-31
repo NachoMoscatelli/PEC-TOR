@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsb7ib6msodah"]
 
-[ext_resource type="Texture2D" uid="uid://cd5k8kvt268ws" path="res://assets/art/backgrounds/street-background.png" id="1_ecxui"]
+[ext_resource type="Texture2D" uid="uid://cd5k8kvt268ws" path="res://assets/tuto/art/backgrounds/street-background.png" id="1_ecxui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_igr15"]
 size = Vector2(400, 20)

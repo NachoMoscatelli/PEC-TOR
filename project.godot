@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="beat em up"
-run/main_scene="uid://bbr3y8w3tatkv"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+run/main_scene="uid://c60x73ycl8gjf"
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=100
-window/size/viewport_height=64
+window/size/viewport_width=340
+window/size/viewport_height=192
 window/size/window_width_override=1000
 window/size/window_height_override=640
 window/stretch/mode="viewport"

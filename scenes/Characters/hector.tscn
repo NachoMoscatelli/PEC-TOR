@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://lsijrvmx3pif" path="res://scenes/Characters/character.tscn" id="1_j1bab"]
 [ext_resource type="Script" uid="uid://dnbkv45ha2vyp" path="res://scenes/Characters/player.gd" id="2_i04uw"]
-[ext_resource type="Texture2D" uid="uid://b663f1lr2228g" path="res://assets/art/characters/hectormaqueta2.png" id="2_j1bab"]
+[ext_resource type="Texture2D" uid="uid://b663f1lr2228g" path="res://assets/tuto/art/characters/hectormaqueta2.png" id="2_j1bab"]
 [ext_resource type="PackedScene" uid="uid://d0gqttf3he3mh" path="res://scenes/Characters/enemy_slot.tscn" id="4_67d5r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1bab"]
@@ -100,6 +100,9 @@ _data = {
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("2_i04uw")
+max_health = 100
+current_health = 100
+speed = 100
 
 [node name="SadowSprite" parent="." index="0"]
 scale = Vector2(2, 2)

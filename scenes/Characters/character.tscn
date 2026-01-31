@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://lsijrvmx3pif"]
 
 [ext_resource type="Script" uid="uid://cxa34qp5tfbvd" path="res://scenes/Characters/character.gd" id="1_ticvp"]
-[ext_resource type="Texture2D" uid="uid://cevte1su5r6a0" path="res://assets/art/characters/shadow.png" id="2_3mn46"]
+[ext_resource type="Texture2D" uid="uid://cevte1su5r6a0" path="res://assets/tuto/art/characters/shadow.png" id="2_3mn46"]
 [ext_resource type="PackedScene" uid="uid://b1p6j7rjgak31" path="res://scenes/Colliders/hit_box.tscn" id="3_1yu0b"]
 [ext_resource type="PackedScene" uid="uid://cvolacppbp0h4" path="res://scenes/Colliders/hurt_box.tscn" id="4_0pm5v"]
 
