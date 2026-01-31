@@ -262,8 +262,8 @@ duration_prep_hit = 0
 max_health = 30
 damage = 2
 speed = 25
-knokback_intensity = 40.0
-knokdown_intensity = 70.0
+knokback_intensity = 100.0
+knokdown_intensity = 170.0
 duration_grounded_ms = 1000
 
 [node name="SadowSprite" parent="." index="0"]
